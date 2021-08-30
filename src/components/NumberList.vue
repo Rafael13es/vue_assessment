@@ -32,9 +32,26 @@ export default {
             })
             .forEach(this.evaluateNumbers);
         }
+      } catch (error) {
+        this.divisibleNumbers[0] = "The inputs are not numbers.";
+      }
     },
-    created(){
-        this.createUnorderedList(3, 103);
+    evaluateNumbers(value) {
+      try {
+        if (value) {
+          if (value % 5 == 0 && value % 3 == 0) {
+            this.divisibleNumbers.push(value + " - three and five");
+          } else if (value % 5 == 0) {
+            this.divisibleNumbers.push(value + " - five");
+          } else if (value % 3 == 0) {
+            this.divisibleNumbers.push(value + " - three");
+          }
+        } else {
+          this.divisibleNumbers[0] = "The value can't be null.";
+        }
+      } catch (error) {
+        this.divisibleNumbers[0] = "The value can only be a number.";
+      }
     },
     evaluateInput(start, end) {
       if (start === null || end === null) {
